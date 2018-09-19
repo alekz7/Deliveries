@@ -13,6 +13,11 @@ const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
 
+const cows          = require('cows');
+const chalk         = require('chalk');
+
+const vacas = cows();
+const vacaRandom = vacas[Math.floor(Math.random() * 250)];
 
 mongoose.Promise = Promise;
 mongoose
@@ -81,5 +86,6 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
+console.log(chalk.yellow(vacaRandom));
 
 module.exports = app;
