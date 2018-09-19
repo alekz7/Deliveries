@@ -12,11 +12,11 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
-    
+
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/deliveries', {useMongoClient: true})
+  .connect('mongodb://' + process.env.MONGO_USR + ':' + process.env.MONGO_PASS + '@ds161062.mlab.com:61062/deliveries', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -41,7 +41,7 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -58,7 +58,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
       return options.fn(this);
   }
 });
-  
+
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -73,13 +73,13 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
-    
+
 
 const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
-      
+
 
 module.exports = app;
