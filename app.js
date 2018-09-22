@@ -8,16 +8,54 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
-
 const cows          = require('cows');
 const chalk         = require('chalk');
+const firebase      = require("firebase");
 
 const vacas = cows();
 const vacaRandom = vacas[Math.floor(Math.random() * 250)];
+
+// Initialize Firebase
+var config = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_PROJECT_ID + ".firebaseapp.com",
+  databaseURL: "https://" + process.env.FIREBASE_DATABASE_NAME + ".firebaseio.com",
+  storageBucket: process.env.FIREBASE_BUCKET + ".appspot.com",
+};
+firebase.initializeApp(config);
+
+//Acceso con facebook
+var provider = new firebase.auth.FacebookAuthProvider();
+//opcional
+//provider.addScope('user_birthday');
+//firebase.auth().languageCode = 'fr_FR';
+// To apply the default browser preference instead of explicitly setting it.
+// firebase.auth().useDeviceLanguage();
+// provider.setCustomParameters({
+//   'display': 'popup'
+// });
+
+firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  var token = result.credential.accessToken;  //puedo obtener datos adicionales de la API de facebook
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+
+
 
 mongoose.Promise = Promise;
 mongoose
@@ -66,7 +104,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Modulo 3 Ironhack';
 
 
 // Enable authentication using session + passport
