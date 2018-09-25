@@ -5,8 +5,8 @@
   "dependencies": {
     "@progress/kendo-react-buttons": "^2.0.0",
     "@progress/kendo-theme-default": "^2.56.0",
+    "antd": "^3.9.3",
     "bulma": "^0.7.1",
-    "bulma-start": "^0.0.2",
     "firebase": "^5.5.1",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
