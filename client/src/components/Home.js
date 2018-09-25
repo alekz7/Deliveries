@@ -6,7 +6,7 @@ import { DatePicker } from 'antd';
 import 'bulma/css/bulma.css';
 import 'antd/dist/antd.css';
 var divStyle = {
-  paddingLeft: '15px'  
+  paddingLeft: '15px'
 };
 
 class Home extends React.Component {
@@ -23,7 +23,6 @@ class Home extends React.Component {
                 <CarouselBootstrap /><Product />
               </div>
             </div>
-
           </div>
   }
 }

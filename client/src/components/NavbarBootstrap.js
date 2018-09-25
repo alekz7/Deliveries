@@ -10,6 +10,12 @@ import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faShoppingCart)
+
 class NavbarBootstrap extends React.Component {
   state={
     user:""
@@ -57,17 +63,17 @@ class NavbarBootstrap extends React.Component {
         Link
       </NavItem>
       <NavItem eventKey={2} href="#">
-        Link
-      </NavItem>
-      <NavItem eventKey={3} href="#">
         <Link to ='/'>Home</Link>
       </NavItem>
-      <NavItem eventKey={4} href="#">
-        <Link to ='/private'>Comprar</Link>
+      <NavItem eventKey={3} href="#">
+        <Link to ='/comprar'>Comprar</Link>
+      </NavItem>
+      <NavItem eventKey={3} href="#">
+        <Link to ='/pago'>Pago</Link>
       </NavItem>
       {this.navDropdown()}
-      {this.searchButton(5)}
-      <NavItem eventKey={6} href="#">
+      {this.searchButton(4)}
+      <NavItem eventKey={5} href="#">
         <Navbar.Collapse>
           <Navbar.Form pullLeft>
             <Button type="submit" onClick={this.logout}>Logout</Button>
@@ -81,14 +87,11 @@ class NavbarBootstrap extends React.Component {
         Link
       </NavItem>
       <NavItem eventKey={2} href="#">
-        Link
-      </NavItem>
-      <NavItem eventKey={3} href="#">
         <Link to ='/'>Home</Link>
       </NavItem>
       {this.navDropdown()}
-      {this.searchButton(4)}
-      <NavItem eventKey={5} href="#">
+      {this.searchButton(3)}
+      <NavItem eventKey={4} href="#">
         <Navbar.Collapse>
           <Navbar.Form pullLeft>
             <Button type="submit" onClick={this.login}>Login</Button>
@@ -102,7 +105,7 @@ class NavbarBootstrap extends React.Component {
     return (<Navbar inverse collapseOnSelect>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <Link to ='/'>Deliveries</Link>
+                  <Link to ='/'>Deliveries <FontAwesomeIcon icon="shopping-cart" /></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>

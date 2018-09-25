@@ -7,6 +7,7 @@ const Card = (props) => {
     <Thumbnail src="/img/headphones.jpg" alt="242x200">
       <h5>Thumbnail label</h5>
       <p>Description</p>
+      <h6>$12.50</h6>
       <p align="right">
         <Button bsStyle="primary">+</Button>
       </p>
