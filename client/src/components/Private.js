@@ -1,5 +1,12 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom';
+import { DatePicker } from 'antd';
+
+import 'bulma/css/bulma.css';
+import 'antd/dist/antd.css';
+var divStyle = {
+  paddingLeft: '15px'
+};
 
 class Private extends React.Component {
 
@@ -26,8 +33,20 @@ class Private extends React.Component {
 
   render () {
     return <div>
-    {this.checkUser()}
-    </div>
+            <div className="columns is-mobile">
+              <div className="is-one-fifth" style={divStyle}>
+                <code>Menu</code><br />
+                <code>Categorias</code><br />
+                <code>Filtros</code><br />
+                <DatePicker />
+              </div>
+              <div className="column">
+                <div>
+                  {this.checkUser()}
+                </div>
+              </div>
+            </div>
+          </div>
   }
 }
 

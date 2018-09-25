@@ -3,12 +3,12 @@ import React from 'react';
 import history from './history';
 import Private from './components/Private';
 import Product from './components/Product';
-import Navbar from './components/Navbar';
+import NavbarBootstrap from './components/NavbarBootstrap';
 import Home from './components/Home';
 
 export default () => <Router history={history}>
   <div>
-    <Navbar />
+    <NavbarBootstrap />
     <Route exact path='/' component={Home} />
     <Route path='/private' component={Private} />
     <Route path='/product' component={Product} />
